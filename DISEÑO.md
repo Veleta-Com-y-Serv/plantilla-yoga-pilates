@@ -51,3 +51,8 @@ Este fichero se queda en el repo: es lo que lee quien (persona o agente) redise�
 - Capturas a 375 y 1440 sin scroll horizontal.
 - Nota de SEO: la lista `horario` lleva clases (dia, hora) y no horas de apertura, así que el JSON-LD no saca
   `openingHours`; el horario de apertura está en `contacto.horario`.
+
+## Páginas propias (fichas)
+Con la misma piel que la portada: cabecera y pie de la plantilla, migas (Inicio › Sección › Elemento), hero con la foto del
+elemento (sin foto, su icono), `detalle` en párrafos, tabla de datos, caja de contacto, galería (`imagenes`) y otros elementos
+de la misma lista.

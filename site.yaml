@@ -56,11 +56,63 @@ secciones:
     titulo: Encuentra tu manera de moverte
     texto: Del yoga más suave al pilates con máquina. Si no sabes por dónde empezar, ven a una clase de prueba y te orientamos.
     clases:
-      - { nombre: Hatha yoga, texto: "Posturas sostenidas, respiración y relajación final. La clase perfecta para empezar o volver.", nivel: Todos los niveles, duracion: 75 min, imagen: /fotos/clase-hatha.jpg }
-      - { nombre: Vinyasa, texto: "Secuencias que encadenan movimiento y respiración. Más ritmo, más calor y la misma calma al acabar.", nivel: Intermedio, duracion: 60 min, imagen: /fotos/clase-vinyasa.jpg }
-      - { nombre: Pilates suelo, texto: "Trabajo del centro del cuerpo, la postura y la espalda con aros, pelotas y bandas elásticas.", nivel: Todos los niveles, duracion: 55 min, imagen: /fotos/clase-pilates-suelo.jpg }
-      - { nombre: Pilates máquina, texto: "Sesiones con reformer en grupos de cuatro. Ideal para fortalecer y para recuperarse de una lesión.", nivel: Con valoración previa, duracion: 55 min, imagen: /fotos/clase-pilates-maquina.jpg }
-      - { nombre: Yoga suave y restaurativo, texto: "Posturas apoyadas en cojines y mantas para soltar tensión. Para cualquier edad y cualquier cuerpo.", nivel: Iniciación, duracion: 60 min, imagen: /fotos/clase-restaurativo.jpg }
+      - nombre: Hatha yoga
+        texto: "Posturas sostenidas, respiración y relajación final. La clase perfecta para empezar o volver."
+        nivel: Todos los niveles
+        duracion: 75 min
+        imagen: /fotos/clase-hatha.jpg
+        imagenes: "/fotos/espacio-1.jpg; /fotos/espacio-2.jpg"
+        detalle: |
+          El hatha es el yoga clásico, pausado y fácil de seguir. Cada postura se mantiene unos instantes para que te dé tiempo a colocarte, a notar dónde hay tensión y a respirar con calma, sin prisas ni exigencias.
+
+          La clase empieza con unos minutos de llegada y respiración, sigue con una secuencia de posturas de pie, sentadas y tumbadas, y termina con una relajación final guiada en la que el cuerpo se asienta y la cabeza baja el ritmo. La profesora explica cada postura y propone variantes con bloques y cinturón, de modo que nadie se queda atrás.
+
+          Es una buena puerta de entrada si nunca has hecho yoga o si vuelves después de un tiempo parado. También encaja con quien ya practica y busca un rato de calma entre semana. Basta con venir con ropa cómoda: la esterilla y el material están en el estudio. Si tienes alguna molestia o lesión, cuéntaselo a la profesora antes de empezar y adaptará la clase.
+      - nombre: Vinyasa
+        texto: "Secuencias que encadenan movimiento y respiración. Más ritmo, más calor y la misma calma al acabar."
+        nivel: Intermedio
+        duracion: 60 min
+        imagen: /fotos/clase-vinyasa.jpg
+        detalle: |
+          En vinyasa el movimiento no se detiene: cada postura enlaza con la siguiente al ritmo de la respiración, como una danza sencilla que va ganando intensidad. Es una clase más dinámica que el hatha, con más calor y más trabajo de fuerza y de equilibrio.
+
+          La sesión arranca con un calentamiento suave, sube poco a poco hacia secuencias más largas y baja de nuevo hacia posturas de suelo y una relajación final. La música es discreta y la profesora va marcando el compás con la voz, de forma que puedas seguir el hilo aunque no conozcas todos los nombres.
+
+          Está pensada para quien ya conoce las posturas básicas y quiere moverse con más fluidez. Si vienes del hatha, es el siguiente paso natural. Se agradece traer una toalla pequeña y agua. Si te cuesta seguir el ritmo, siempre puedes parar en la postura del niño y retomar cuando quieras: aquí nadie compite, y el objetivo es salir con el cuerpo suelto y la cabeza despejada.
+      - nombre: Pilates suelo
+        texto: "Trabajo del centro del cuerpo, la postura y la espalda con aros, pelotas y bandas elásticas."
+        nivel: Todos los niveles
+        duracion: 55 min
+        imagen: /fotos/clase-pilates-suelo.jpg
+        imagenes: "/fotos/espacio-3.jpg; /fotos/espacio-4.jpg"
+        detalle: |
+          El pilates de suelo trabaja el centro del cuerpo, la musculatura profunda del abdomen y de la espalda, con ejercicios precisos y controlados sobre la esterilla. No hace falta ninguna máquina: con el propio peso del cuerpo y algo de material pequeño se consigue mucho.
+
+          En clase usamos aros, pelotas y bandas elásticas para variar la dificultad y para que cada persona encuentre su versión del ejercicio. La profesora corrige la postura de cerca, cuida la respiración y hace hincapié en la columna, el suelo pélvico y los hombros, que son las zonas que más se resienten con el trabajo de oficina y con el sedentarismo.
+
+          Es una clase para cualquier nivel: quien empieza aprende los principios básicos del método y quien ya lleva tiempo afina el control y la técnica. Notarás el efecto en la postura, en la estabilidad y en cómo te sientes al final del día. Si vas a venir con una molestia de espalda, avísanos y te orientamos antes de la primera sesión.
+      - nombre: Pilates máquina
+        texto: "Sesiones con reformer en grupos de cuatro. Ideal para fortalecer y para recuperarse de una lesión."
+        nivel: Con valoración previa
+        duracion: 55 min
+        imagen: /fotos/clase-pilates-maquina.jpg
+        detalle: |
+          El reformer es una camilla con un carro deslizante y muelles de resistencia regulable. Permite trabajar con el apoyo justo para fortalecer sin castigar las articulaciones, por eso es tan útil tanto para ganar fuerza como para recuperarse de una lesión.
+
+          Los grupos son de cuatro personas, así que la profesora puede atender a cada una, ajustar los muelles y corregir el movimiento al momento. Antes de empezar hacemos una valoración individual: hablamos de tu espalda, de tus antecedentes y de lo que buscas, y con eso te proponemos el punto de partida y el ritmo de progresión.
+
+          La sesión combina ejercicios de piernas, brazos y tronco con una buena dosis de control y respiración. No es una clase de impacto, pero se nota: al principio sorprende lo que trabaja el abdomen y el equilibrio. Es una opción muy buena si estás saliendo de una lesión con el visto bueno de tu médico o fisioterapeuta, o si quieres un trabajo más personalizado que el de suelo. Pregúntanos por la valoración.
+      - nombre: Yoga suave y restaurativo
+        texto: "Posturas apoyadas en cojines y mantas para soltar tensión. Para cualquier edad y cualquier cuerpo."
+        nivel: Iniciación
+        duracion: 60 min
+        imagen: /fotos/clase-restaurativo.jpg
+        detalle: |
+          Esta clase es un respiro. Las posturas se sostienen con el apoyo de cojines, mantas y bloques para que el cuerpo no tenga que hacer esfuerzo y pueda soltarse de verdad. Se trata de dejar de empujar y de darle al sistema nervioso permiso para descansar.
+
+          La profesora te coloca con cuidado, te acerca una manta si tienes frío y marca un ritmo lento, con pausas largas y una respiración tranquila. El ambiente es de penumbra suave y silencio, sin música alta ni correcciones constantes. Pocas posturas, mantenidas con calma, y el resto lo hace el tiempo.
+
+          Es ideal para quien llega con estrés, con mal dormir o con el cuerpo cargado de tensión, y también para personas mayores, para quien está recuperándose o para quien nunca ha hecho yoga y prefiere empezar sin presión. No necesitas flexibilidad ni experiencia. Muchas alumnas la combinan con una clase más activa durante la semana, porque equilibra el trabajo y ayuda a recuperar. Sales más ligero de lo que entraste.
       - { nombre: Meditación y respiración, texto: "Media hora sentados para aprender a parar. Técnicas sencillas que puedes llevarte a casa.", nivel: Todos los niveles, duracion: 30 min, imagen: /fotos/clase-meditacion.jpg }
     cta: { texto: Prueba una clase, url: "/#primera-clase" }
 

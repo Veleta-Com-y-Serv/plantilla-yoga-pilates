@@ -75,6 +75,7 @@ const texto = (v: unknown) => (v == null ? '' : String(v));
 
 function clase(e: Crudo): Clase {
   return {
+    ...e, // conserva `detalle`, `imagenes` y `slug` de las fichas (src/lib/paginas.ts)
     nombre: texto(e.nombre || e.titulo),
     texto: texto(e.texto),
     nivel: texto(e.nivel),
