@@ -1,0 +1,68 @@
+---
+// Primera clase: fila 50/50 a sangre. A la izquierda, bloque de terracota con un gran sol de fondo, título serif,
+// texto, pasos numerados en cursiva (`items`: titulo, texto) y dos botones; a la derecha, la foto toca el borde de
+// la ventana con la esquina superior izquierda en hoja. Sin `imagen`, el bloque de color ocupa todo el ancho.
+// También vale para llamadas a la acción nuevas (`tipo: primera-clase`).
+import { seccion, partirTitulo } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const pasos = s ? s.items.filter((it) => it && it.titulo) : [];
+const [inicio, final] = partirTitulo(s?.titulo);
+---
+
+{
+  s && (
+    <section id={id} class="banda--acento relative isolate overflow-hidden">
+      <div class:list={['grid', s.imagen && 'md:grid-cols-2']}>
+        <div class:list={['primera-texto relative py-20 md:py-28', !s.imagen && 'contenedor']}>
+          <span class="primera-sol" aria-hidden="true" />
+          {s.antetitulo && <p class="rotulo">{s.antetitulo}</p>}
+          {s.titulo && <h2 class="titulo-mitad mt-5 max-w-[16ch]">{inicio}<em>{final}</em></h2>}
+          {s.texto && <p class="mt-6 max-w-xl text-lg opacity-90">{s.texto}</p>}
+          {pasos.length > 0 && (
+            <ol class="mt-10 grid max-w-xl gap-6">
+              {pasos.map((p, i) => (
+                <li class="flex gap-5">
+                  <span class="serif w-8 shrink-0 text-4xl italic leading-none" aria-hidden="true">{i + 1}</span>
+                  <div>
+                    <p class="text-lg font-semibold">{p.titulo}</p>
+                    {p.texto && <p class="opacity-85">{p.texto}</p>}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          )}
+          {(s.cta?.url || s.cta_secundario?.url) && (
+            <div class="mt-11 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              {s.cta?.url && <a class="btn" href={s.cta.url}>{s.cta.texto}</a>}
+              {s.cta_secundario?.url && <a class="btn-sec" href={s.cta_secundario.url}>{s.cta_secundario.texto}</a>}
+            </div>
+          )}
+        </div>
+        {s.imagen && (
+          <div class="relative aspect-[4/5] md:aspect-auto md:min-h-[44rem]">
+            <div class="primera-foto absolute inset-0 overflow-hidden">
+              <Imagen src={s.imagen} respaldo="/placeholders/primera.svg" alt={altSeccion(s)} ancho={900} alto={1200} class="h-full w-full object-cover" />
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .primera-texto { padding-inline: 1rem; }
+  @media (min-width: 768px) { .primera-texto { padding-inline: 2.5rem; } }
+  @media (min-width: 1024px) {
+    .primera-texto:not(.contenedor) { padding-left: max(4rem, calc((100vw - var(--ancho)) / 2 + 4rem)); padding-right: 4rem; }
+  }
+  .primera-sol {
+    position: absolute; z-index: -1; left: -8rem; bottom: -10rem; width: 28rem; height: 28rem; border-radius: 999px;
+    background: color-mix(in srgb, #fff 14%, transparent);
+  }
+  .primera-foto { border-radius: var(--hoja) 0 0 0; }
+</style>

@@ -1,0 +1,60 @@
+---
+// El espacio: cabecera sobre arena clara y, debajo, mosaico de fotos de borde a borde sin márgenes. En escritorio
+// las fotos van en filas alternas de 2 y de 3 (una sola foto al final ocupa toda la fila, como una franja); en
+// móvil, 2 columnas con la primera (y la última si sobra) a lo ancho.
+// Campos: `galeria` (rutas). Sin fotos, solo la cabecera. También vale para `tipo: espacio`.
+import { seccion } from '../../data/site';
+import { altGaleria } from '../../lib/seo';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const fotos = s ? s.galeria.filter(Boolean).slice(0, 24) : [];
+// Filas de escritorio: 2, 3, 2, 3… fotos; la última fila se queda con las que sobren.
+const filas: number[] = [];
+for (let i = 0, t = 2; i < fotos.length; t = t === 2 ? 3 : 2) {
+  const n = Math.min(t, fotos.length - i);
+  for (let k = 0; k < n; k++) filas.push(n);
+  i += n;
+}
+---
+
+{
+  s && (
+    <section id={id} class="banda--blanca">
+      <div class="contenedor seccion">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+      </div>
+      {fotos.length > 0 && (
+        <ul class="mosaico">
+          {fotos.map((f, i) => (
+            <li class:list={['relative overflow-hidden', `fila-${filas[i]}`]} style={`--col:${6 / filas[i]}`}>
+              <Imagen
+                src={f}
+                respaldo="/placeholders/galeria.svg"
+                alt={altGaleria(i)}
+                ancho={filas[i] === 3 ? 800 : 1200}
+                alto={filas[i] === 3 ? 800 : 900}
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
+              />
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  )
+}
+
+<style>
+  .mosaico { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mosaico > li { height: 46vw; }
+  .mosaico > li:first-child, .mosaico > li:last-child:nth-child(even) { grid-column: span 2; height: 62vw; }
+  @media (min-width: 768px) {
+    .mosaico { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    .mosaico > li, .mosaico > li:first-child, .mosaico > li:last-child:nth-child(even) { grid-column: span var(--col); }
+    .mosaico > li.fila-1 { height: min(34vw, 32rem); }
+    .mosaico > li.fila-2 { height: min(36vw, 36rem); }
+    .mosaico > li.fila-3 { height: min(26vw, 26rem); }
+  }
+</style>

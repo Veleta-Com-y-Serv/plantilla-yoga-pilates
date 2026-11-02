@@ -1,0 +1,55 @@
+---
+// Apartado de texto genérico: antetítulo, título, párrafos, lista con hoja, botón e imagen opcional.
+// Con imagen, fila 50/50 a sangre (la foto toca el borde de la ventana, con la esquina en hoja); sin imagen,
+// título a la izquierda y texto a la derecha a todo el ancho. Lo usan los apartados nuevos (`tipo: texto`).
+import { seccion, parrafos, partirTitulo } from '../../data/site';
+import { altSeccion } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+import Icono from '../ui/Icono.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const items = s ? s.items.filter((it) => it.titulo) : [];
+const [inicio, final] = partirTitulo(s?.titulo);
+---
+
+{
+  s && (
+    <section id={id} class="banda--blanca">
+      <div class:list={['grid', s.imagen ? 'md:grid-cols-2' : 'contenedor seccion lg:grid-cols-12 lg:gap-16']}>
+        {s.imagen && (
+          <div class="relative aspect-[4/3] md:aspect-auto md:min-h-[34rem]">
+            <div class="absolute inset-0 overflow-hidden" style="border-radius: 0 0 var(--hoja) 0">
+              <Imagen src={s.imagen} respaldo="/placeholders/galeria.svg" alt={altSeccion(s)} ancho={1200} alto={900} class="h-full w-full object-cover" />
+            </div>
+          </div>
+        )}
+        <div class:list={[s.imagen ? 'max-w-[46rem] px-4 py-16 md:px-10 md:py-24 lg:px-20' : 'contents']}>
+          <div class:list={[!s.imagen && 'lg:col-span-5']}>
+            {s.antetitulo && <p class="rotulo">{s.antetitulo}</p>}
+            {s.titulo && <h2 class:list={['titulo-seccion', s.imagen && 'titulo-mitad']}>{inicio}<em>{final}</em></h2>}
+          </div>
+          <div class:list={[s.imagen ? 'mt-6' : 'mt-8 lg:col-span-7 lg:mt-0 lg:pt-10']}>
+            <div class="space-y-4 text-lg opacity-85">
+              {parrafos(s.texto).map((p) => <p>{p}</p>)}
+            </div>
+            {items.length > 0 && (
+              <ul class="mt-8 grid gap-5">
+                {items.map((it) => (
+                  <li class="flex gap-4">
+                    <Icono nombre={it.icono} class="mt-1 shrink-0 acento-legible" tam={22} />
+                    <div>
+                      <p class="font-semibold">{it.titulo}</p>
+                      {it.texto && <p class="opacity-75">{it.texto}</p>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {s.cta?.url && <a class="btn mt-9" href={s.cta.url}>{s.cta.texto}</a>}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

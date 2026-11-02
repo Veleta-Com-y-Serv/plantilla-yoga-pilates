@@ -1,0 +1,66 @@
+---
+// Horario semanal en banda salvia oscura a todo el ancho: una columna por día (en escritorio, todas a lo ancho;
+// en móvil, una debajo de otra) con la hora en serif grande, la clase y quién la da. Lista `horario` (dia, hora,
+// clase, profesor): se agrupa por `dia` en el orden en que aparece. Una línea con `horas` y sin `clase` se pinta
+// como horario de apertura («Lunes · 9:00 a 14:00»). Sin líneas, solo la cabecera y el botón.
+import { seccion } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const dias: { dia: string; sesiones: { hora: string; clase: string; profesor: string }[] }[] = [];
+for (const h of s ? s.horario : []) {
+  const hora = h.hora || h.horas || '';
+  if (!h.dia && !hora && !h.clase) continue;
+  let grupo = dias.find((d) => d.dia === (h.dia || ''));
+  if (!grupo) dias.push((grupo = { dia: h.dia || '', sesiones: [] }));
+  grupo.sesiones.push({ hora, clase: h.clase || '', profesor: h.profesor || '' });
+}
+---
+
+{
+  s && (
+    <section id={id} class="banda--oscura seccion relative overflow-hidden">
+      <span class="horario-sol" aria-hidden="true" />
+      <div class="contenedor relative">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} />
+        {dias.length > 0 && (
+          <div class="horario-rejilla mt-14 md:mt-20">
+            {dias.map((d) => (
+              <div class="border-t border-current/25 pt-5">
+                {d.dia && <h3 class="text-3xl italic">{d.dia}</h3>}
+                <ul class="mt-4">
+                  {d.sesiones.map((x) => (
+                    <li class="flex gap-4 border-b border-current/15 py-4 last:border-b-0 lg:block">
+                      {x.hora && <p class="serif w-16 shrink-0 text-2xl leading-none tabular-nums lg:w-auto">{x.hora}</p>}
+                      <div class="lg:mt-2">
+                        {x.clase && <p class="font-semibold leading-snug">{x.clase}</p>}
+                        {x.profesor && <p class="text-sm opacity-70">con {x.profesor}</p>}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+        {s.cta?.url && (
+          <p class="mt-14">
+            <a class="btn" href={s.cta.url}>{s.cta.texto}</a>
+          </p>
+        )}
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .horario-rejilla { display: grid; gap: 2.5rem 2rem; }
+  @media (min-width: 640px) { .horario-rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) { .horario-rejilla { grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 2rem; } }
+  .horario-sol {
+    position: absolute; right: -9rem; top: -9rem; width: 26rem; height: 26rem; border-radius: 999px;
+    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    box-shadow: 0 0 0 3.5rem color-mix(in srgb, currentColor 4%, transparent), 0 0 0 7rem color-mix(in srgb, currentColor 3%, transparent);
+  }
+</style>

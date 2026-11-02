@@ -1,0 +1,93 @@
+# Metadatos de la plantilla para el catálogo de NoExpertise.
+id: yoga-pilates
+nombre: Yoga y pilates
+descripcion: Web serena a todo el ancho para estudios de yoga y pilates, con clases, horario, tarifas y primera clase.
+sectores:
+  - { id: yoga, nombre: Yoga }
+  - { id: pilates, nombre: Pilates }
+  - { id: meditacion, nombre: Meditación }
+  - { id: bienestar, nombre: Bienestar }
+  - { id: centro-holistico, nombre: Centro holístico }
+secciones:
+  - { id: hero, nombre: Portada }
+  - { id: clases, nombre: Clases }
+  - { id: horario, nombre: Horario semanal }
+  - { id: tarifas, nombre: Tarifas }
+  - { id: profesores, nombre: Profesores }
+  - { id: espacio, nombre: El espacio }
+  - { id: primera-clase, nombre: Primera clase }
+  - { id: opiniones, nombre: Opiniones }
+  - { id: preguntas, nombre: Preguntas frecuentes }
+  - { id: contacto, nombre: Contacto }
+estilo: sereno
+plan_minimo: gratis
+version: 1.0.0
+base: astrowind
+demo_url: https://demo-plantilla-yoga-pilates.noexpertise.com
+activa: true
+orden: 540
+
+# Asistente de puesta en marcha (NoExpertise): un paso por pantalla. Rutas del site sin índices;
+# tipos: texto y lista (la IA propone), datos, fotos, eleccion (colores y logo) y repaso.
+asistente:
+  - id: negocio
+    titulo: "Tu estudio"
+    pregunta: "¿Cómo se llama tu estudio, dónde está y qué lo hace distinto?"
+    ayuda: "El barrio, cómo es la sala, qué disciplinas das y para quién son: quien empieza, quien viene de una lesión, deportistas…"
+    tipo: texto
+    campos: [nombre, eslogan, seo.titulo, seo.descripcion, secciones.hero.antetitulo, secciones.hero.titulo, secciones.hero.texto]
+  - id: contacto
+    titulo: "Cómo te encuentran"
+    pregunta: "¿Cuál es la dirección y cómo os pueden llamar o escribir? ¿Qué horario tiene el estudio?"
+    ayuda: "Solo lo que quieras que vean tus alumnos. Lo que dejes vacío no sale en tu web."
+    tipo: datos
+    campos: [contacto.telefono, contacto.whatsapp, contacto.email, contacto.direccion, contacto.horario, redes.instagram, redes.facebook]
+  - id: clases
+    titulo: "Tus clases"
+    pregunta: "¿Qué clases das? Una por línea: el nombre, de qué va, para qué nivel y cuánto dura."
+    ayuda: "Las fotos de cada clase las pones luego en Contenido."
+    tipo: lista
+    campos: [secciones.clases.clases]
+  - id: horario
+    titulo: "El horario"
+    pregunta: "¿Qué clases hay cada día? Una por línea: día, hora, clase y quién la da."
+    ayuda: "Por ejemplo: «Lunes, 9:00, Hatha yoga, Marta». Si cambia mucho, puedes saltar este paso."
+    tipo: lista
+    campos: [secciones.horario.horario]
+  - id: tarifas
+    titulo: "Tus tarifas"
+    pregunta: "¿Cuánto cuestan las clases? Uno por línea: clase suelta, bonos, mensualidades… con el precio y qué incluye."
+    ayuda: "Si prefieres no enseñar precios, deja solo el nombre y lo que incluye."
+    tipo: lista
+    campos: [secciones.tarifas.tarifas]
+  - id: profesores
+    titulo: "Quién da las clases"
+    pregunta: "¿Quién da las clases? Nombre, qué disciplinas y una frase sobre cada persona, una por línea."
+    ayuda: "Las fotos las pones luego en Contenido."
+    tipo: lista
+    campos: [secciones.profesores.personas]
+  - id: primera-clase
+    titulo: "La primera clase"
+    pregunta: "¿Cómo es la primera vez de alguien en tu estudio? ¿Es gratis, tiene precio especial, qué tiene que traer?"
+    tipo: texto
+    campos: [secciones.primera-clase.titulo, secciones.primera-clase.texto, secciones.primera-clase.items]
+  - id: preguntas
+    titulo: "Preguntas frecuentes"
+    pregunta: "¿Qué te preguntan siempre antes de venir? Si pueden empezar sin experiencia, qué traer, lesiones, embarazo… Escribe cada pregunta y lo que respondes."
+    ayuda: "Es lo que citan Google y los asistentes cuando alguien busca yoga o pilates en tu zona."
+    tipo: lista
+    campos: [secciones.preguntas.preguntas]
+  - id: fotos
+    titulo: "Tus fotos"
+    pregunta: "Pon una foto de portada, la de la primera clase y las de tu espacio."
+    ayuda: "Sube las tuyas o elige una del banco. Las que no cambies se quedan como están."
+    tipo: fotos
+    campos: [secciones.hero.imagen, secciones.primera-clase.imagen, secciones.espacio.galeria]
+  - id: aspecto
+    titulo: "Colores y logo"
+    pregunta: "Elige los colores de tu web y, si tienes, tu logo."
+    tipo: eleccion
+    campos: [colores.primario, colores.acento, logo]
+  - id: repaso
+    titulo: "Repaso"
+    tipo: repaso

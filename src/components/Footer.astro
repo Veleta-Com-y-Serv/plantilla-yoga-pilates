@@ -1,0 +1,79 @@
+---
+// Pie a todo el ancho en salvia muy oscuro: medio sol del acento, el nombre en serif cursiva enorme, columnas de
+// contacto, horario y menú, y la línea legal. «Web creada con NoExpertise» si site.yaml → marca_pie no es false.
+import { site, tel, mapa, whatsapp } from '../data/site';
+import Icono from './ui/Icono.astro';
+interface Props { variante?: string }
+const { variante = 'sereno' } = Astro.props;
+const c = site.contacto;
+const redes = Object.entries(site.redes).filter(([, url]) => url);
+const anio = new Date().getFullYear();
+---
+
+<footer class={`pie pie--${variante}`}>
+  <div class="contenedor">
+    <div class="pie-sol" aria-hidden="true"></div>
+    <p class="pie-rotulo mt-6" aria-hidden="true">{site.nombre}</p>
+    <div class="pie-rejilla">
+      <div class="pie-marca">
+        <p class="pie-nombre serif !font-normal">{site.nombre}</p>
+        {site.eslogan && <p class="pie-eslogan">{site.eslogan}</p>}
+        {
+          redes.length > 0 && (
+            <ul class="pie-redes">
+              {redes.map(([red, url]) => (
+                <li>
+                  <a href={url} rel="noopener" target="_blank" aria-label={red}>
+                    <Icono nombre={red} tam={20} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
+      {
+        (c.telefono || c.email || c.whatsapp || c.direccion) && (
+          <div>
+            <p class="pie-titulo">Contacto</p>
+            <ul class="pie-lista">
+              {c.telefono && <li><a href={tel(c.telefono)}>{c.telefono}</a></li>}
+              {c.whatsapp && <li><a href={whatsapp(c.whatsapp)} rel="noopener" target="_blank">WhatsApp</a></li>}
+              {c.email && <li><a href={`mailto:${c.email}`} class="break-all">{c.email}</a></li>}
+              {c.direccion && <li><a href={mapa(c.direccion)} rel="noopener" target="_blank">{c.direccion}</a></li>}
+            </ul>
+          </div>
+        )
+      }
+      {
+        c.horario && (
+          <div>
+            <p class="pie-titulo">Horario</p>
+            <p class="opacity-85">{c.horario}</p>
+          </div>
+        )
+      }
+      {
+        site.menu.length > 0 && (
+          <div>
+            <p class="pie-titulo">Web</p>
+            <ul class="pie-lista">
+              {site.menu.map((e) => <li><a href={e.url}>{e.texto}</a></li>)}
+            </ul>
+          </div>
+        )
+      }
+    </div>
+  </div>
+  <div class="contenedor pie-legal">
+    <span>© {anio} {site.nombre}</span>
+    <a href="/aviso-legal">Aviso legal y privacidad</a>
+    {
+      site.marca_pie && (
+        <span class="pie-noexpertise">
+          Web creada con <a href="https://noexpertise.com" rel="noopener">NoExpertise</a>
+        </span>
+      )
+    }
+  </div>
+</footer>

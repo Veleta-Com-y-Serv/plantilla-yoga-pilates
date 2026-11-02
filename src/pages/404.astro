@@ -1,0 +1,18 @@
+---
+// Página 404 con el diseño de la plantilla: banda salvia a todo el ancho con un gran sol del acento y el número
+// enorme en serif cursiva.
+import Base from '../layouts/Base.astro';
+---
+
+<Base titulo="Página no encontrada">
+  <section class="banda--oscura relative isolate flex min-h-[75svh] items-center overflow-hidden">
+    <span class="absolute -bottom-40 -right-24 -z-10 h-[26rem] w-[26rem] rounded-full bg-[var(--c-acento)] opacity-90 md:h-[36rem] md:w-[36rem]" aria-hidden="true"></span>
+    <div class="contenedor py-20">
+      <p class="rotulo">Error 404</p>
+      <p class="titulo-mega mt-6 italic" aria-hidden="true">404</p>
+      <h1 class="mt-6 max-w-[20ch] text-[clamp(1.9rem,4vw,3.2rem)]">Este camino no lleva a ninguna sala</h1>
+      <p class="titular-texto mt-5 !opacity-90">Puede que el enlace esté mal o que la página se haya movido. Respira y vuelve al inicio.</p>
+      <p class="mt-10"><a class="btn" href="/">Volver al inicio</a></p>
+    </div>
+  </section>
+</Base>

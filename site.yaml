@@ -1,0 +1,164 @@
+# Contenido de la web. Es lo único que rellena la plataforma NoExpertise.
+# Las secciones se muestran en el orden de este fichero. Para ocultar una: activa: false.
+# Apartado nuevo: un id propio (es su ancla, /#id) con `tipo:` = el diseño de otra sección o `texto`.
+nombre: Atalaya Yoga y Pilates
+eslogan: Estudio de yoga y pilates en el casco antiguo de Cartagena, a dos calles del puerto.
+sector: yoga
+logo: ""          # ruta a una imagen en public/ (p. ej. /logo.svg). Vacío = nombre en texto.
+colores:
+  primario: "#44584a"
+  acento: "#c9785b"
+  fondo: "#f1e9dc"
+  texto: "#2b2925"
+contacto:
+  telefono: "968 51 27 40"
+  email: hola@atalayayoga.es
+  direccion: Calle del Carmen 41, 30201 Cartagena (Murcia)
+  horario: Lunes a viernes de 8:00 a 21:30. Sábados de 9:30 a 13:00.
+  whatsapp: "+34 655 21 27 40"
+redes:
+  instagram: https://www.instagram.com/
+  facebook: https://www.facebook.com/
+  linkedin: ""
+menu:
+  - { texto: Clases, url: "/#clases" }
+  - { texto: Horario, url: "/#horario" }
+  - { texto: Tarifas, url: "/#tarifas" }
+  - { texto: Profesoras, url: "/#profesores" }
+  - { texto: El espacio, url: "/#espacio" }
+  - { texto: Contacto, url: "/#contacto" }
+boton_cabecera: { texto: Primera clase gratis, url: "/#primera-clase" }
+seo:
+  titulo: Atalaya · Yoga y pilates en el centro de Cartagena
+  descripcion: Yoga, pilates en suelo y con máquina y meditación en grupos pequeños, en el casco antiguo de Cartagena. Tu primera clase es gratis.
+  tipo: SportsActivityLocation   # tipo de schema.org (LocalBusiness, SportsActivityLocation…)
+marca_pie: true   # «Web creada con NoExpertise» en el pie (plan gratis)
+
+secciones:
+  hero:
+    activa: true
+    antetitulo: Yoga y pilates · Cartagena
+    titulo: Respira hondo. Aquí el tiempo va más despacio.
+    texto: Una sala de techos altos y luz de mañana en pleno casco antiguo. Clases de diez personas como mucho, para que te corrijamos y te sientas en casa.
+    imagen: /fotos/hero.jpg
+    cta: { texto: Reserva tu primera clase, url: "/#primera-clase" }
+    cta_secundario: { texto: Ver el horario, url: "/#horario" }
+    items:   # frases de la cinta que se desliza bajo la portada
+      - { titulo: Grupos de diez personas }
+      - { titulo: Primera clase gratis }
+      - { titulo: Esterillas y material incluidos }
+      - { titulo: A dos calles del puerto }
+      - { titulo: Clases de mañana y de tarde }
+
+  clases:
+    activa: true
+    antetitulo: Clases
+    titulo: Encuentra tu manera de moverte
+    texto: Del yoga más suave al pilates con máquina. Si no sabes por dónde empezar, ven a una clase de prueba y te orientamos.
+    clases:
+      - { nombre: Hatha yoga, texto: "Posturas sostenidas, respiración y relajación final. La clase perfecta para empezar o volver.", nivel: Todos los niveles, duracion: 75 min, imagen: /fotos/clase-hatha.jpg }
+      - { nombre: Vinyasa, texto: "Secuencias que encadenan movimiento y respiración. Más ritmo, más calor y la misma calma al acabar.", nivel: Intermedio, duracion: 60 min, imagen: /fotos/clase-vinyasa.jpg }
+      - { nombre: Pilates suelo, texto: "Trabajo del centro del cuerpo, la postura y la espalda con aros, pelotas y bandas elásticas.", nivel: Todos los niveles, duracion: 55 min, imagen: /fotos/clase-pilates-suelo.jpg }
+      - { nombre: Pilates máquina, texto: "Sesiones con reformer en grupos de cuatro. Ideal para fortalecer y para recuperarse de una lesión.", nivel: Con valoración previa, duracion: 55 min, imagen: /fotos/clase-pilates-maquina.jpg }
+      - { nombre: Yoga suave y restaurativo, texto: "Posturas apoyadas en cojines y mantas para soltar tensión. Para cualquier edad y cualquier cuerpo.", nivel: Iniciación, duracion: 60 min, imagen: /fotos/clase-restaurativo.jpg }
+      - { nombre: Meditación y respiración, texto: "Media hora sentados para aprender a parar. Técnicas sencillas que puedes llevarte a casa.", nivel: Todos los niveles, duracion: 30 min, imagen: /fotos/clase-meditacion.jpg }
+    cta: { texto: Prueba una clase, url: "/#primera-clase" }
+
+  horario:
+    activa: true
+    antetitulo: Horario semanal
+    titulo: Clases de mañana, de mediodía y de tarde
+    texto: Reserva tu plaza por WhatsApp o en recepción. Si no puedes venir, avísanos y la dejamos libre para otra persona.
+    horario:
+      - { dia: Lunes, hora: "9:00", clase: Hatha yoga, profesor: Marta }
+      - { dia: Lunes, hora: "14:15", clase: Pilates suelo, profesor: Elena }
+      - { dia: Lunes, hora: "19:30", clase: Vinyasa, profesor: Marta }
+      - { dia: Martes, hora: "8:00", clase: Pilates máquina, profesor: Elena }
+      - { dia: Martes, hora: "18:00", clase: Yoga suave y restaurativo, profesor: Inés }
+      - { dia: Martes, hora: "20:00", clase: Meditación y respiración, profesor: Inés }
+      - { dia: Miércoles, hora: "9:00", clase: Pilates suelo, profesor: Elena }
+      - { dia: Miércoles, hora: "19:30", clase: Hatha yoga, profesor: Marta }
+      - { dia: Jueves, hora: "8:00", clase: Pilates máquina, profesor: Elena }
+      - { dia: Jueves, hora: "14:15", clase: Vinyasa, profesor: Marta }
+      - { dia: Jueves, hora: "18:00", clase: Pilates suelo, profesor: Pablo }
+      - { dia: Viernes, hora: "9:00", clase: Yoga suave y restaurativo, profesor: Inés }
+      - { dia: Viernes, hora: "18:30", clase: Vinyasa, profesor: Pablo }
+      - { dia: Sábado, hora: "10:00", clase: Hatha yoga, profesor: Inés }
+      - { dia: Sábado, hora: "11:45", clase: Meditación y respiración, profesor: Inés }
+    cta: { texto: Reservar plaza, url: "/#contacto" }
+
+  tarifas:
+    activa: true
+    antetitulo: Tarifas
+    titulo: Sin matrícula y sin permanencia
+    texto: Todas las tarifas sirven para cualquier clase de suelo. El pilates con máquina va aparte porque los grupos son de cuatro.
+    tarifas:
+      - { nombre: Clase suelta, texto: "Para venir cuando te apetezca.", precio: "14 €", periodo: la clase, incluye: "Cualquier clase de suelo; Esterilla y material", destacado: false }
+      - { nombre: Bono 8 clases, texto: "Para venir dos veces por semana.", precio: "85 €", periodo: dos meses de validez, incluye: "8 clases de suelo; Puedes compartirlo con alguien de casa; Cambio de clase avisando", destacado: false }
+      - { nombre: Ilimitado, texto: "Para hacer del estudio tu rutina.", precio: "69 €", periodo: al mes, incluye: "Todas las clases de suelo; Reserva preferente; Un taller al trimestre gratis", destacado: true }
+      - { nombre: Pilates máquina, texto: "Sesiones con reformer en grupos de cuatro.", precio: "140 €", periodo: 10 sesiones, incluye: "Valoración inicial; Grupos de cuatro; Seguimiento de la profesora", destacado: false }
+    cta: { texto: Empieza con una clase gratis, url: "/#primera-clase" }
+
+  profesores:
+    activa: true
+    antetitulo: Profesoras y profesor
+    titulo: Te van a llamar por tu nombre
+    texto: Formadas en yoga y en pilates terapéutico, con años de práctica y sin prisas. Te corrigen, te escuchan y adaptan cada postura a tu cuerpo.
+    personas:
+      - { nombre: Marta Garre, cargo: Hatha y vinyasa, foto: /placeholders/persona.svg, texto: "Fundó el estudio después de quince años dando clases. Le encantan los saludos al sol con el amanecer." }
+      - { nombre: Elena Sáez, cargo: Pilates suelo y máquina, foto: /placeholders/persona.svg, texto: "Fisioterapeuta de formación. Si tienes una lesión, es la persona a la que tienes que contárselo." }
+      - { nombre: Inés Navarro, cargo: Yoga suave y meditación, foto: /placeholders/persona.svg, texto: "Sus clases restaurativas de los viernes tienen lista de espera. Habla poco y muy bajito." }
+      - { nombre: Pablo Conesa, cargo: Vinyasa y pilates, foto: /placeholders/persona.svg, texto: "Llegó del surf al yoga. Sus clases de tarde son las que más sudan." }
+
+  espacio:
+    activa: true
+    antetitulo: El espacio
+    titulo: Una casa del siglo XIX llena de luz
+    texto: Suelos de madera, techos de cuatro metros y ventanales a la calle del Carmen. Tenemos vestuario con ducha y una terraza para el té de después.
+    galeria:
+      - /fotos/espacio-1.jpg
+      - /fotos/espacio-2.jpg
+      - /fotos/espacio-3.jpg
+      - /fotos/espacio-4.jpg
+      - /fotos/espacio-5.jpg
+      - /fotos/espacio-6.jpg
+
+  primera-clase:
+    activa: true
+    antetitulo: Primera clase
+    titulo: Tu primera clase corre de nuestra cuenta
+    texto: Escríbenos, elige la clase que más te apetezca y ven con ropa cómoda. El resto lo ponemos nosotros.
+    imagen: /fotos/primera-clase.jpg
+    items:
+      - { titulo: Escríbenos, texto: "Por WhatsApp o con el formulario, y te proponemos clase y hora." }
+      - { titulo: Ven diez minutos antes, texto: "Te enseñamos el estudio y te preguntamos cómo estás." }
+      - { titulo: Disfruta, texto: "Esterilla, mantas y bloques te esperan en la sala." }
+    cta: { texto: Quiero mi clase gratis, url: "/#contacto" }
+    cta_secundario: { texto: Ver las clases, url: "/#clases" }
+
+  opiniones:
+    activa: true
+    antetitulo: Opiniones
+    titulo: Lo que cuentan después de la relajación final
+    testimonios:
+      - { texto: "Llevaba años con dolor de espalda por el trabajo. Con el pilates de Elena he vuelto a dormir del tirón.", autor: "Carmen R. · Alumna de pilates máquina" }
+      - { texto: "Grupos pequeños de verdad. En la segunda clase ya sabían cómo me llamaba y qué postura me costaba.", autor: "Javier M. · Alumno de hatha yoga" }
+      - { texto: "La sala es preciosa y salir a la calle del Carmen después de la meditación de los martes no tiene precio.", autor: "Lucía P. · Alumna de meditación" }
+
+  preguntas:
+    activa: true
+    antetitulo: Preguntas frecuentes
+    titulo: Antes de tu primera clase
+    texto: Si te queda alguna duda, escríbenos por WhatsApp y te contestamos enseguida.
+    preguntas:
+      - { pregunta: "Nunca he hecho yoga ni pilates, ¿puedo empezar?", respuesta: "Claro. Las clases de hatha, pilates suelo y yoga suave son para todos los niveles. Te recomendamos una para empezar y la profesora adapta las posturas." }
+      - { pregunta: "¿Qué tengo que traer?", respuesta: "Ropa cómoda y una botella de agua. Esterillas, mantas, bloques y cojines están en la sala. Si prefieres traer tu esterilla, también puedes." }
+      - { pregunta: "¿Hay permanencia o matrícula?", respuesta: "No. Pagas la clase suelta, el bono o el mes, y lo dejas cuando quieras." }
+      - { pregunta: "¿Puedo hacer pilates si tengo una lesión?", respuesta: "Sí, y suele ayudar. Antes del pilates con máquina hacemos una valoración y, si tienes informe médico, tráelo. Elena es fisioterapeuta." }
+      - { pregunta: "¿Hay clases para embarazadas?", respuesta: "Las clases de yoga suave sirven a partir del segundo trimestre con la aprobación de tu matrona. Avísanos antes de venir." }
+
+  contacto:
+    activa: true
+    antetitulo: Contacto
+    titulo: Pásate a vernos o escríbenos
+    texto: Contestamos los mensajes el mismo día. Estamos a dos calles del puerto, junto a la plaza de San Francisco.

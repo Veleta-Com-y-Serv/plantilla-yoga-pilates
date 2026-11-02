@@ -1,0 +1,85 @@
+---
+// Portada partida a sangre: a la izquierda, banda de arena con el antetítulo, el título serif enorme (última
+// palabra en cursiva), el texto y dos botones; a la derecha, la foto toca el borde de la ventana, arriba y abajo,
+// con la esquina inferior izquierda en forma de hoja y un sol del acento que asoma. En móvil, texto arriba y foto
+// a sangre debajo. Bajo la portada, cinta de salvia que se desliza con las frases de `items` (titulo); sin
+// frases no hay cinta.
+import { seccion, site, partirTitulo } from '../../data/site';
+import { altHero } from '../../lib/seo';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string; primera?: boolean }
+const { id, primera = false } = Astro.props;
+const s = seccion(id);
+const [inicio, final] = partirTitulo(s?.titulo || site.nombre);
+const frases = s ? s.items.filter((it) => it && it.titulo).map((it) => it.titulo) : [];
+---
+
+{
+  s && (
+    <section id={id} class="banda--clara relative isolate overflow-hidden">
+      <div class="grid lg:min-h-[calc(88svh-var(--alto-cabecera))] lg:grid-cols-2">
+        <div class="hero-texto relative z-10 flex flex-col justify-center py-14 md:py-20 lg:py-24">
+          {s.antetitulo && <p class="rotulo">{s.antetitulo}</p>}
+          <h1 class="titulo-mega mt-7 max-w-[13ch]">{inicio}<em>{final}</em></h1>
+          {s.texto && <p class="mt-8 max-w-xl text-lg opacity-80 md:text-xl">{s.texto}</p>}
+          {(s.cta?.url || s.cta_secundario?.url) && (
+            <div class="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              {s.cta?.url && <a class="btn" href={s.cta.url}>{s.cta.texto}</a>}
+              {s.cta_secundario?.url && <a class="btn-sec" href={s.cta_secundario.url}>{s.cta_secundario.texto}</a>}
+            </div>
+          )}
+        </div>
+        <div class="relative min-h-[22rem] sm:min-h-[30rem] lg:min-h-0">
+          <div class="hero-foto absolute inset-0 overflow-hidden">
+            <Imagen
+              src={s.imagen || '/placeholders/hero.svg'}
+              respaldo="/placeholders/hero.svg"
+              alt={altHero()}
+              ancho={1200}
+              alto={1200}
+              prioridad={primera}
+              class="h-full w-full object-cover"
+            />
+          </div>
+          <span class="hero-sol" aria-hidden="true" />
+        </div>
+      </div>
+      {
+        frases.length > 0 && (
+          <div class="cinta banda--oscura relative z-10 py-5 md:py-6">
+            <div class="cinta-pista">
+              {[0, 1].map((vuelta) => (
+                <ul class="flex shrink-0 items-center" aria-hidden={vuelta === 1 ? 'true' : undefined}>
+                  {frases.map((f) => (
+                    <li class="flex items-center">
+                      <span class="serif whitespace-nowrap px-6 text-2xl italic md:px-9 md:text-3xl">{f}</span>
+                      <span class="block h-2.5 w-5 rounded-t-full bg-[var(--c-acento)]" aria-hidden="true" />
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </section>
+  )
+}
+
+<style>
+  .hero-texto { padding-inline: 1rem; }
+  @media (min-width: 768px) { .hero-texto { padding-inline: 2.5rem; } }
+  @media (min-width: 1024px) {
+    .hero-texto { padding-left: max(4rem, calc((100vw - var(--ancho)) / 2 + 4rem)); padding-right: 3rem; }
+  }
+  .hero-foto { border-radius: 0 0 0 var(--hoja); }
+  .hero-sol {
+    position: absolute; z-index: 1; right: 1.5rem; top: -2.75rem;
+    width: 5.5rem; height: 5.5rem; border-radius: 999px;
+    background: var(--c-acento); opacity: .92;
+  }
+  @media (min-width: 1024px) {
+    .hero-foto { border-radius: 0 0 0 calc(var(--hoja) * 1.6); }
+    .hero-sol { left: -4.5rem; right: auto; top: auto; bottom: 14%; width: 9rem; height: 9rem; }
+  }
+</style>

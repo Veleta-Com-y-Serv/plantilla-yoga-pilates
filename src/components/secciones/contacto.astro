@@ -1,0 +1,62 @@
+---
+// Contacto en banda salvia a todo el ancho: título serif, los datos en tipografía grande (teléfono, email,
+// dirección con enlace al mapa y horario), botones de llamar y WhatsApp y, a la derecha, el formulario sobre un
+// bloque de arena con la esquina de hoja (con día y clase que interesa: las opciones salen de `clases`).
+// Los datos salen de site.yaml → contacto; lo vacío no se pinta.
+import { seccion, site, tel, mapa, whatsapp, partirTitulo } from '../../data/site';
+import FormularioContacto from '../ui/FormularioContacto.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const c = site.contacto;
+const [inicio, final] = partirTitulo(s?.titulo || site.nombre);
+const opciones = (site.secciones.clases?.clases ?? []).map((x) => x.nombre).filter(Boolean);
+const datos = [
+  c.telefono && { etiqueta: 'Teléfono', valor: c.telefono, url: tel(c.telefono), grande: true },
+  c.email && { etiqueta: 'Email', valor: c.email, url: `mailto:${c.email}`, grande: false },
+  c.direccion && { etiqueta: 'Dirección', valor: c.direccion, url: mapa(c.direccion), grande: false },
+  c.horario && { etiqueta: 'Horario', valor: c.horario, url: '', grande: false },
+].filter(Boolean) as { etiqueta: string; valor: string; url: string; grande: boolean }[];
+---
+
+{
+  s && (
+    <section id={id} class="banda--oscura seccion">
+      <div class="contenedor grid gap-14 lg:grid-cols-12 lg:gap-20">
+        <div class="lg:col-span-6">
+          {s.antetitulo && <p class="rotulo">{s.antetitulo}</p>}
+          <h2 class="titulo-seccion">{inicio}<em>{final}</em></h2>
+          {s.texto && <p class="titular-texto mt-6 !opacity-90">{s.texto}</p>}
+          {datos.length > 0 && (
+            <dl class="mt-12 grid gap-8">
+              {datos.map((d) => (
+                <div>
+                  <dt class="text-xs font-semibold uppercase tracking-[.22em] opacity-70">{d.etiqueta}</dt>
+                  <dd class:list={['mt-2 min-w-0 break-words', d.grande ? 'serif text-[clamp(2.2rem,5vw,3.8rem)] leading-none' : 'text-lg md:text-xl']}>
+                    {d.url ? (
+                      <a href={d.url} class="underline decoration-[var(--c-acento)] decoration-2 underline-offset-[7px] hover:decoration-4" rel={d.url.startsWith('http') ? 'noopener' : undefined} target={d.url.startsWith('http') ? '_blank' : undefined}>
+                        {d.valor}
+                      </a>
+                    ) : (
+                      d.valor
+                    )}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          )}
+          {(c.telefono || c.whatsapp) && (
+            <div class="mt-11 flex flex-col gap-3 sm:flex-row">
+              {c.telefono && <a class="btn" href={tel(c.telefono)}>Llamar</a>}
+              {c.whatsapp && <a class="btn-sec" href={whatsapp(c.whatsapp, `Hola, os escribo desde la web de ${site.nombre}.`)} rel="noopener" target="_blank">Escribir por WhatsApp</a>}
+            </div>
+          )}
+        </div>
+        <div class="banda--clara hoja-peq self-start p-6 sm:p-9 lg:col-span-6 lg:p-12">
+          <p class="serif mb-7 text-3xl">Escríbenos</p>
+          <FormularioContacto prefijo="contacto" boton="Enviar mensaje" visita opciones={opciones} />
+        </div>
+      </div>
+    </section>
+  )
+}

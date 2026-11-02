@@ -1,0 +1,43 @@
+---
+// Profesores en banda salvia clara: título centrado y rejilla de 4 columnas con la foto en círculo grande
+// rodeado de un aro del acento, el nombre en serif, sus disciplinas (cargo) y una frase. Lista `personas`
+// (nombre, cargo, foto, texto). Sin personas, solo la cabecera.
+import { seccion } from '../../data/site';
+import Titular from '../ui/Titular.astro';
+import Imagen from '../ui/Imagen.astro';
+interface Props { id: string }
+const { id } = Astro.props;
+const s = seccion(id);
+const personas = s ? s.personas.filter((p) => p && p.nombre) : [];
+---
+
+{
+  s && (
+    <section id={id} class="banda--salvia seccion">
+      <div class="contenedor">
+        <Titular antetitulo={s.antetitulo} titulo={s.titulo} texto={s.texto} centrado />
+        {personas.length > 0 && (
+          <ul class="mt-14 grid grid-cols-2 gap-x-4 gap-y-12 sm:gap-x-8 md:mt-20 lg:grid-cols-4">
+            {personas.map((p) => (
+              <li class="text-center">
+                <div class="mx-auto aspect-square w-full max-w-[15rem] rounded-full border border-[var(--c-acento)] p-1.5 sm:p-2.5">
+                  <Imagen
+                    src={p.foto || '/placeholders/persona.svg'}
+                    respaldo="/placeholders/persona.svg"
+                    alt={p.nombre}
+                    ancho={480}
+                    alto={480}
+                    class="h-full w-full rounded-full object-cover"
+                  />
+                </div>
+                <h3 class="mt-6 text-[1.45rem] sm:text-[1.9rem]">{p.nombre}</h3>
+                {p.cargo && <p class="mt-2 text-xs font-semibold uppercase tracking-[.2em] acento-legible">{p.cargo}</p>}
+                {p.texto && <p class="mx-auto mt-3 max-w-xs text-[.95rem] opacity-80 sm:text-base">{p.texto}</p>}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </section>
+  )
+}
